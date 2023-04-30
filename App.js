@@ -12,7 +12,7 @@ export const useProgressContext = () => {
   return React.useContext(Progress)
 }
 export default function App() {
-  const [progress, setProgress] = React.useState(useSharedValue(0))
+  const [progress, setProgress] = React.useState(useSharedValue(0).value)
   return (
     <Progress.Provider value={{ progress, setProgress }}>
       <NavigationContainer>

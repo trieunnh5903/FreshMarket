@@ -1,3 +1,5 @@
+import { SIZES } from "./sizes";
+
 export const FONTS = {
     largeTitle: { fontFamily: "Poppins-Black", fontSize: SIZES.largeTitle },
     h1: { fontFamily: "Poppins-Bold", fontSize: SIZES.h1, lineHeight: 36 },

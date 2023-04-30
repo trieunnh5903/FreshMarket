@@ -1,6 +1,7 @@
 const screens = {
     main_layout: "MainLayout",
     home: "Home",
+    my_wallet: 'My Wallet',
     search: "Search",
     cart: "Cart",
     favourite: "Favourite",
