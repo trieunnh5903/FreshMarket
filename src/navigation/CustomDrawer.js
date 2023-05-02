@@ -4,7 +4,6 @@ import { DrawerContentScrollView, DrawerItem, DrawerItemList, createDrawerNaviga
 import Home from '../screens/home/Home';
 import Cart from '../screens/cart/Cart';
 import { COLORS } from '../constants/colors';
-import { useProgressContext } from '../../App';
 import { screens } from '../constants/screens';
 import icons from '../constants/icons';
 import { FONTS } from '../constants/fonts';
@@ -21,23 +20,17 @@ const CustomDrawerItem = ({ label, icon }) => {
 }
 
 const CustomDrawerContent = (props) => {
-    let progressValue = useDrawerProgress().value;
-    let { setProgress } = useProgressContext();
-
-    setTimeout(() => {
-        setProgress(progressValue);
-    }, 0)
     return (
         <DrawerContentScrollView
             scrollEnabled
             contentContainerStyle={styles.contentContainerStyle}>
             <View style={{ flex: 1, padding: SIZES.spacing }}>
                 {/* button close */}
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     onPress={() => props.navigation.closeDrawer()}
                     style={styles.btnCloseContainer}>
                     <Image style={styles.btnClose} source={icons.close} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 {/* profile */}
                 <View style={styles.profileContainer}>
                     <Image style={styles.profileIcon} source={{ uri: data.myProfile.profile_image }}></Image>
@@ -57,7 +50,7 @@ const CustomDrawerContent = (props) => {
                     <CustomDrawerItem label={'Invite a Friend'} icon={icons.add_persion} />
                     <CustomDrawerItem label={'Help Center'} icon={icons.help_center} />
                     <CustomDrawerItem label={'Setting'} icon={icons.setting} />
-                    <View style={{flex: 1}}/>
+                    <View style={{ flex: 1 }} />
                     <CustomDrawerItem label={'Logout'} icon={icons.logout} />
                 </View>
                 {/* line divider */}
@@ -70,27 +63,28 @@ const CustomDrawerContent = (props) => {
 const Drawer = createDrawerNavigator();
 const CustomDrawer = () => {
     return (
-        <>
-            <StatusBar barStyle={'default'} animated translucent backgroundColor={COLORS.transparent} />
-            <View style={styles.container}>
-                <Drawer.Navigator initialRouteName={screens.home}
-                    screenOptions={{
-                        overlayColor: COLORS.transparent,
-                        headerShown: false,
-                        drawerType: 'slide',
-                        drawerStyle: styles.drawerStyle,
 
-                    }}
-                    drawerContent={props => {
-                        return (
-                            <CustomDrawerContent {...props} />
-                        )
-                    }}>
-                    <Drawer.Screen component={Home} name={screens.home} />
-                    <Drawer.Screen component={Cart} name={screens.cart} />
-                </Drawer.Navigator>
-            </View>
-        </>
+        <View style={styles.container}>
+            <Drawer.Navigator
+                screenOptions={{
+                    headerShown: false,
+                    drawerType: 'slide',
+                    drawerStyle: styles.drawerStyle,
+                    sceneContainerStyle: { backgroundColor: COLORS.transparent }
+                }}
+                drawerContent={props => {
+                    return (
+                        <CustomDrawerContent {...props} />
+                    )
+                }}
+                initialRouteName={screens.home}>
+                <Drawer.Screen component={Home} name={screens.home}>
+
+                </Drawer.Screen>
+                {/* <Drawer.Screen component={Home} name={screens.home} /> */}
+            </Drawer.Navigator>
+        </View>
+
 
     )
 }
@@ -99,9 +93,22 @@ export default CustomDrawer
 
 const styles = StyleSheet.create({
     profileContainer: {
-        flexDirection: 'row',
-        marginHorizontal: SIZES.spacing,
-        marginBottom: SIZES.spacing
+        margin: SIZES.spacing,
+        // backgroundColor: 'yellow'
+
+    },
+
+    profileIcon: {
+        width: '65%',
+        aspectRatio: 1,
+        borderRadius: SIZES.radius / 2,
+        margin: SIZES.spacing,
+
+    },
+
+    profileContent: {
+        justifyContent: 'center',
+        marginLeft: SIZES.spacing
     },
 
     lineDivider: {
@@ -113,7 +120,6 @@ const styles = StyleSheet.create({
     drawerItem: {
         flexDirection: 'row',
         height: 40,
-        marginBottom: SIZES.spacing,
         alignItems: 'center',
         paddingLeft: SIZES.spacing,
         borderRadius: SIZES.radius,
@@ -136,17 +142,6 @@ const styles = StyleSheet.create({
         marginLeft: SIZES.spacing,
         color: COLORS.white,
         ...FONTS.h3
-    },
-
-    profileIcon: {
-        width: 50,
-        height: 50,
-        borderRadius: SIZES.radius / 2
-    },
-
-    profileContent: {
-        justifyContent: 'center',
-        marginLeft: SIZES.spacing
     },
 
     container: {
