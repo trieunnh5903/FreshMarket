@@ -1,10 +1,11 @@
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, FlatList, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import icons from '../../constants/icons'
 import { COLORS } from '../../constants/colors'
 import { SIZES } from '../../constants/sizes'
 import data from '../../constants/data'
 import { HorizontalFoodCard } from '../../components'
+import { FONTS } from '../../constants/fonts'
 
 const SearchInput = () => {
   return (
@@ -21,15 +22,11 @@ const SearchInput = () => {
   )
 }
 
-const HeaderMenuType = () => {
-  return (
-    <Text>sdadasdas</Text>
-  )
-}
 const Home = () => {
   const [categoryId, setCategoryId] = useState(1);
   const [menuTypeId, setMenuTypeId] = useState(1);
   const [menuList, setMenuList] = useState([]);
+  const tabMenuList = useRef();
   useEffect(() => {
     handlerChangeCategory(categoryId, menuTypeId);
   }, [])
@@ -39,6 +36,41 @@ const Home = () => {
     setMenuList(menu[0]?.list)
   }
 
+  const onTabPress = useCallback((tabId) => {
+    setMenuTypeId(tabId);
+    handlerChangeCategory(categoryId, tabId);
+  }, [])
+
+  const HeaderMenuType = () => {
+    return (
+      <FlatList
+        ref={tabMenuList}
+        horizontal
+        data={data.menu}
+        keyExtractor={(item) => `${item.id}`}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{
+          marginTop: 30,
+          marginBottom: 20
+        }}
+        renderItem={({ item, index }) => {
+          return (
+            <TouchableOpacity
+              style={{
+                marginLeft: SIZES.padding,
+                marginRight: index == data.menu.length - 1 ? SIZES.padding : 0
+              }}
+              onPress={() => onTabPress(item.id)}>
+              <Text
+                style={[
+                  { color: menuTypeId == item.id ? COLORS.primary : COLORS.blackText },
+                  FONTS.h3
+                ]}>{item.name}</Text>
+            </TouchableOpacity>
+          )
+        }} />
+    )
+  }
   return (
     <View style={styles.container}>
       {/* search */}

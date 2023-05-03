@@ -18,6 +18,7 @@ import Search from './search/Search';
 import Cart from './cart/Cart';
 import Favourite from './favourite/Favourite';
 import Notification from './notification/Notification';
+import { FlashList } from '@shopify/flash-list';
 
 
 const TabButton = ({ icon, label, isFocused, onPress, colorReanimatedStyle, flexReanimatedStyle }) => {
@@ -211,7 +212,8 @@ const MainLayout = ({ navigation }) => {
             />
             {/* content */}
             <View style={{ flex: 1 }} >
-                <FlatList
+                <FlashList
+                    estimatedItemSize={SIZES.height}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     ref={flatListRef}
@@ -221,7 +223,7 @@ const MainLayout = ({ navigation }) => {
                     keyExtractor={(item) => `${item.id}`}
                     renderItem={({ item, index }) => {
                         return (
-                            <View style={[styles.flatListItemContainer, { backgroundColor: `rgba(0,0,256,0.${index + 2})` }]}>
+                            <View style={[styles.flatListItemContainer]}>
                                 {item.label == screens.home && <Home />}
                                 {item.label == screens.search && <Search />}
                                 {item.label == screens.cart && <Cart />}
@@ -310,7 +312,7 @@ export default MainLayout
 const styles = StyleSheet.create({
     flatListItemContainer: {
         width: SIZES.width,
-        height: SIZES.height,
+        height: SIZES.height
     },
 
     tabButtonContent: {
