@@ -14,4 +14,5 @@ export default icons = {
     filter: require('../assets/icons/filter.png'),
     expand: require('../assets/icons/expand.png'),
     cart: require('../assets/icons/cart.png'),
+    calories: require('../assets/icons/calories.png'),
 }

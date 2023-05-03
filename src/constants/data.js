@@ -3,4 +3,117 @@ const myProfile = {
     profile_image: "https://plus.unsplash.com/premium_photo-1671581559476-10b8a92ffb77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     address: "No. 88, Jln Padungan, Kuching"
 }
-export default { myProfile }
+
+
+const categories = [
+    {
+        id: 1,
+        name: "Fast Food",
+        icon: "https://img.icons8.com/fluency/48/null/hamburger.png"
+    },
+    {
+        id: 2,
+        name: "Fruit Item",
+        icon: "https://img.icons8.com/fluency/48/null/group-of-fruits.png"
+    },
+    {
+        id: 3,
+        name: "Rice Item",
+        icon: "https://img.icons8.com/fluency/48/null/rice-bowl.png"
+    }
+]
+
+const hamburger = {
+    id: 1,
+    name: "Hamburger",
+    description: "Chicken patty hamburger",
+    categories: [1, 2],
+    price: 15.99,
+    calories: 78,
+    isFavourite: true,
+    image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hamburger.png'
+}
+
+const hotTacos = {
+    id: 2,
+    name: "Hot Tacos",
+    description: "Mexican tortilla & tacos",
+    categories: [1, 3],
+    price: 10.99,
+    calories: 78,
+    isFavourite: false,
+    image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hot_tacos.png'
+}
+
+const vegBiryani = {
+    id: 3,
+    name: "Veg Biryani",
+    description: "Indian Vegetable Biryani",
+    categories: [1, 2, 3],
+    price: 10.99,
+    calories: 78,
+    isFavourite: true,
+    image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/veg_biryani.png'
+}
+
+const wrapSandwich = {
+    id: 4,
+    name: "Wrap Sandwich",
+    description: "Grilled vegetables sandwich",
+    categories: [1, 2],
+    price: 10.99,
+    calories: 78,
+    isFavourite: true,
+    image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/wrap_sandwich.png'
+}
+
+const menu = [
+    {
+        id: 1,
+        name: "Featured",
+        list: [
+            hamburger, hotTacos, vegBiryani,
+        ]
+    },
+    {
+        id: 2,
+        name: "Nearby you",
+        list: [
+            hamburger, vegBiryani, wrapSandwich,
+        ]
+    },
+    {
+        id: 3,
+        name: "Popular",
+        list: [
+            hamburger, hotTacos, wrapSandwich,
+        ]
+    },
+    {
+        id: 4,
+        name: "Newest",
+        list: [
+            hamburger, hotTacos, vegBiryani,
+        ]
+    },
+    {
+        id: 5,
+        name: "Trending",
+        list: [
+            hamburger, vegBiryani, wrapSandwich,
+        ]
+    },
+    {
+        id: 6,
+        name: "Recommended",
+        list: [
+            hamburger, hotTacos, wrapSandwich,
+        ]
+    },
+
+]
+
+
+
+
+export default data = { myProfile, menu}

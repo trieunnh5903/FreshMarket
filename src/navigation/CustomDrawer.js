@@ -42,9 +42,9 @@ const CustomDrawerContent = ({ navigation }) => {
                 </TouchableOpacity> */}
                 {/* profile */}
                 <View style={styles.profileContainer}>
-                    <Image style={styles.profileIcon} source={{ uri: data.myProfile.profile_image }}></Image>
+                    <Image style={styles.profileIcon} source={{ uri: data?.myProfile?.profile_image }}></Image>
                     <View style={styles.profileContent}>
-                        <Text style={{ ...FONTS.h3, color: COLORS.white }}>{data.myProfile.name}</Text>
+                        <Text style={{ ...FONTS.h3, color: COLORS.white }}>{data?.myProfile?.name}</Text>
                         <Text style={{ ...FONTS.body4, color: COLORS.white }}>View your profile</Text>
                     </View>
                 </View>
