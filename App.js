@@ -6,25 +6,25 @@ import { useSharedValue } from 'react-native-reanimated';
 import { createStackNavigator } from '@react-navigation/stack';
 import CustomDrawer from './src/navigation/CustomDrawer';
 import { COLORS } from './src/constants/colors';
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
 
 const Stack = createStackNavigator()
-const Progress = React.createContext();
-export const useProgressContext = () => {
-  return React.useContext(Progress)
-}
+
 export default function App() {
-  const [progress, setProgress] = React.useState(useSharedValue(0).value)
   return (
-    // {/* <StatusBar barStyle={'default'} animated translucent backgroundColor={COLORS.transparent} /> */ }
-    < NavigationContainer >
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}>
-      <Stack.Screen
-        name='CustomDrawer'
-        component={CustomDrawer} />
-    </Stack.Navigator>
-   </NavigationContainer >
+    <Provider store={store}>
+      <StatusBar barStyle={"dark-content"} animated translucent backgroundColor={COLORS.transparent}/>
+      < NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false
+          }}>
+          <Stack.Screen
+            name='CustomDrawer'
+            component={CustomDrawer} />
+        </Stack.Navigator>
+      </NavigationContainer >
+    </Provider>
   );
 }

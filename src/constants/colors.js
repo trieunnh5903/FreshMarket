@@ -19,7 +19,7 @@ export const COLORS = {
     white2: "#FBFBFB",
     white: '#FFFFFF',
     black: "#000000",
-
+    blackText: '#1C1E21',
     transparent: 'transparent',
     transparentBlack1: "rgba(0, 0, 0, 0.1)",
     transparentBlack7: "rgba(0, 0, 0, 0.7)"

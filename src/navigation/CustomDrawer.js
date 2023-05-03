@@ -1,4 +1,4 @@
-import { Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { DrawerContentScrollView, DrawerItem, DrawerItemList, createDrawerNavigator, useDrawerProgress } from '@react-navigation/drawer'
 import Home from '../screens/home/Home';
@@ -9,17 +9,26 @@ import icons from '../constants/icons';
 import { FONTS } from '../constants/fonts';
 import data from '../constants/data';
 import { SIZES } from '../constants/sizes';
-
-const CustomDrawerItem = ({ label, icon }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedTab } from '../redux/slice/tabSlice';
+import MyWallet from '../screens/my_wallet/MyWallet';
+import Notification from '../screens/notification/Notification';
+import Favourite from '../screens/favourite/Favourite';
+import MainLayout from '../screens/MainLayout';
+const CustomDrawerItem = ({ label, icon, onPress, isFocused }) => {
     return (
-        <TouchableOpacity style={styles.drawerItem}>
-            <Image style={styles.drawerItemIcon} source={icon} />
+        <Pressable
+            onPress={onPress}
+            style={[styles.drawerItem, { backgroundColor: isFocused ? COLORS.transparentBlack1 : null }]}>
+            <Image style={[styles.drawerItemIcon]} source={icon} />
             <Text style={styles.drawerItemLabel}>{label}</Text>
-        </TouchableOpacity>
+        </Pressable>
     )
 }
 
-const CustomDrawerContent = (props) => {
+const CustomDrawerContent = ({ navigation }) => {
+    const dispatch = useDispatch();
+    const selectedTab = useSelector((state) => state.tab.selectedTab);
     return (
         <DrawerContentScrollView
             scrollEnabled
@@ -41,19 +50,59 @@ const CustomDrawerContent = (props) => {
                 </View>
                 {/* drawer Item */}
                 <View style={styles.drawerItemContainer}>
-                    <CustomDrawerItem label={screens.home} icon={icons.home} />
-                    <CustomDrawerItem label={screens.my_wallet} icon={icons.wallet} />
-                    <CustomDrawerItem label={screens.favourite} icon={icons.favourite} />
-                    <CustomDrawerItem label={screens.notification} icon={icons.notification} />
+                    <CustomDrawerItem
+                        onPress={() => {
+                            dispatch(setSelectedTab({ selectedTab: screens.home }));
+                            // navigation.navigate(screens.home)
+                        }}
+                        isFocused={selectedTab == screens.home}
+                        label={screens.home}
+                        icon={icons.home} />
+                    <CustomDrawerItem
+                        onPress={() => {
+                            dispatch(setSelectedTab({ selectedTab: screens.my_wallet }));
+                            // navigation.navigate(screens.my_wallet)
+                        }}
+                        isFocused={selectedTab == screens.my_wallet}
+                        label={screens.my_wallet}
+                        icon={icons.wallet} />
+                    <CustomDrawerItem
+                        onPress={() => {
+                            dispatch(setSelectedTab({ selectedTab: screens.favourite }));
+                            // navigation.navigate(screens.favourite)
+                        }}
+                        isFocused={selectedTab == screens.favourite}
+                        label={screens.favourite}
+                        icon={icons.favourite} />
+                    <CustomDrawerItem
+                        onPress={() => {
+                            dispatch(setSelectedTab({ selectedTab: screens.notification }));
+                            // navigation.navigate(screens.notification)
+                        }}
+                        isFocused={selectedTab == screens.notification}
+                        label={screens.notification}
+                        icon={icons.notification} />
+
+                    {/* line divider */}
                     <View style={styles.lineDivider}></View>
-                    <CustomDrawerItem label={'Track Your Order'} icon={icons.location} />
-                    <CustomDrawerItem label={'Invite a Friend'} icon={icons.add_persion} />
-                    <CustomDrawerItem label={'Help Center'} icon={icons.help_center} />
-                    <CustomDrawerItem label={'Setting'} icon={icons.setting} />
+
+                    <CustomDrawerItem
+                        label={'Track Your Order'}
+                        icon={icons.location} />
+                    <CustomDrawerItem
+                        label={'Invite a Friend'}
+                        icon={icons.add_persion} />
+                    <CustomDrawerItem
+                        label={'Help Center'}
+                        icon={icons.help_center} />
+                    <CustomDrawerItem
+                        label={'Setting'}
+                        icon={icons.setting} />
                     <View style={{ flex: 1 }} />
-                    <CustomDrawerItem label={'Logout'} icon={icons.logout} />
+                    <CustomDrawerItem
+                        label={'Logout'}
+                        icon={icons.logout} />
                 </View>
-                {/* line divider */}
 
             </View>
         </DrawerContentScrollView>
@@ -68,20 +117,16 @@ const CustomDrawer = () => {
             <Drawer.Navigator
                 screenOptions={{
                     headerShown: false,
-                    drawerType: 'slide',
+                    drawerType: 'front',
                     drawerStyle: styles.drawerStyle,
-                    sceneContainerStyle: { backgroundColor: COLORS.transparent }
                 }}
                 drawerContent={props => {
                     return (
                         <CustomDrawerContent {...props} />
                     )
                 }}
-                initialRouteName={screens.home}>
-                <Drawer.Screen component={Home} name={screens.home}>
-
-                </Drawer.Screen>
-                {/* <Drawer.Screen component={Home} name={screens.home} /> */}
+                initialRouteName={screens.main_layout}>
+                <Drawer.Screen component={MainLayout} name={screens.main_layout} />
             </Drawer.Navigator>
         </View>
 
@@ -156,7 +201,7 @@ const styles = StyleSheet.create({
     drawerStyle: {
         flex: 1,
         width: '65%',
-        backgroundColor: COLORS.transparent,
+        backgroundColor: COLORS.primary,
     },
     contentContainerStyle: {
         flex: 1,

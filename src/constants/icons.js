@@ -9,4 +9,9 @@ export default icons = {
     home: require('../assets/icons/home.png'),
     notification: require('../assets/icons/notification.png'),
     setting: require('../assets/icons/setting.png'),
+    menu: require('../assets/icons/menu.png'),
+    search: require('../assets/icons/search.png'),
+    filter: require('../assets/icons/filter.png'),
+    expand: require('../assets/icons/expand.png'),
+    cart: require('../assets/icons/cart.png'),
 }
