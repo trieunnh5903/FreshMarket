@@ -12,7 +12,8 @@ export default icons = {
     menu: require('../assets/icons/menu.png'),
     search: require('../assets/icons/search.png'),
     filter: require('../assets/icons/filter.png'),
-    expand: require('../assets/icons/expand.png'),
+    down_arrow: require('../assets/icons/expand.png'),
     cart: require('../assets/icons/cart.png'),
     calories: require('../assets/icons/calories.png'),
+    favouriteFilled: require('../assets/icons/favourite-filled.png'),
 }

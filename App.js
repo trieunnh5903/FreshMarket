@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useSharedValue } from 'react-native-reanimated';
 import { createStackNavigator } from '@react-navigation/stack';
 import CustomDrawer from './src/navigation/CustomDrawer';
-import { COLORS } from './src/constants/colors';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
 
@@ -14,7 +13,6 @@ const Stack = createStackNavigator()
 export default function App() {
   return (
     <Provider store={store}>
-      <StatusBar barStyle={"dark-content"} animated translucent backgroundColor={COLORS.transparent}/>
       < NavigationContainer>
         <Stack.Navigator
           screenOptions={{

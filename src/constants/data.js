@@ -34,8 +34,30 @@ const hamburger = {
     image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hamburger.png'
 }
 
+const hamburger2 = {
+    id: 22,
+    name: "Hamburger",
+    description: "Chicken patty hamburger",
+    categories: [1, 2],
+    price: 15.99,
+    calories: 78,
+    isFavourite: true,
+    image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hamburger.png'
+}
+
 const hotTacos = {
     id: 2,
+    name: "Hot Tacos",
+    description: "Mexican tortilla & tacos",
+    categories: [1, 3],
+    price: 10.99,
+    calories: 78,
+    isFavourite: false,
+    image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hot_tacos.png'
+}
+
+const hotTacos2 = {
+    id: 23,
     name: "Hot Tacos",
     description: "Mexican tortilla & tacos",
     categories: [1, 3],
@@ -56,8 +78,31 @@ const vegBiryani = {
     image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/veg_biryani.png'
 }
 
+
+const vegBiryani3 = {
+    id: 33,
+    name: "Veg Biryani",
+    description: "Indian Vegetable Biryani",
+    categories: [1, 2, 3],
+    price: 10.99,
+    calories: 78,
+    isFavourite: true,
+    image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/veg_biryani.png'
+}
+
 const wrapSandwich = {
     id: 4,
+    name: "Wrap Sandwich",
+    description: "Grilled vegetables sandwich",
+    categories: [1, 2],
+    price: 10.99,
+    calories: 78,
+    isFavourite: true,
+    image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/wrap_sandwich.png'
+}
+
+const wrapSandwich4 = {
+    id: 44,
     name: "Wrap Sandwich",
     description: "Grilled vegetables sandwich",
     categories: [1, 2],
@@ -72,21 +117,21 @@ const menu = [
         id: 1,
         name: "Featured",
         list: [
-            hamburger, hotTacos, vegBiryani,
+            hamburger, hotTacos, vegBiryani, hamburger2, hotTacos2, vegBiryani3,
         ]
     },
     {
         id: 2,
         name: "Nearby you",
         list: [
-            hamburger, vegBiryani, wrapSandwich,
+            hamburger, vegBiryani, wrapSandwich, hamburger2, hotTacos2, vegBiryani3,
         ]
     },
     {
         id: 3,
         name: "Popular",
         list: [
-            hamburger, hotTacos, wrapSandwich,
+            hamburger, hotTacos, wrapSandwich, hamburger2, hotTacos2, vegBiryani3,
         ]
     },
     {
@@ -107,7 +152,7 @@ const menu = [
         id: 6,
         name: "Recommended",
         list: [
-            hamburger, hotTacos, wrapSandwich,
+            hamburger, hotTacos, wrapSandwich, hamburger2, hotTacos2, vegBiryani3,
         ]
     },
 
@@ -116,4 +161,4 @@ const menu = [
 
 
 
-export default data = { myProfile, menu}
+export default data = { myProfile, menu, categories }

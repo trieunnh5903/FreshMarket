@@ -1,4 +1,4 @@
-import { Image, Text, StyleSheet, Pressable, View, TouchableWithoutFeedback, FlatList } from 'react-native'
+import { Image, Text, StyleSheet, StatusBar, View, TouchableWithoutFeedback, FlatList } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import { COLORS } from '../constants/colors';
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,6 +19,7 @@ import Cart from './cart/Cart';
 import Favourite from './favourite/Favourite';
 import Notification from './notification/Notification';
 import { FlashList } from '@shopify/flash-list';
+import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
 
 
 const TabButton = ({ icon, label, isFocused, onPress, colorReanimatedStyle, flexReanimatedStyle }) => {
@@ -194,6 +195,7 @@ const MainLayout = ({ navigation }) => {
             paddingLeft: insets.left,
             paddingRight: insets.right,
         }]}>
+            <FocusAwareStatusBar barStyle={"dark-content"} animated translucent backgroundColor={COLORS.transparent} />
             <Header
                 containerStyle={styles.containerStyle}
                 title={selectedTab}
@@ -211,19 +213,19 @@ const MainLayout = ({ navigation }) => {
                 }
             />
             {/* content */}
-            <View style={{ flex: 1 }} >
+            <View>
                 <FlashList
-                    estimatedItemSize={SIZES.height}
+                    estimatedItemSize={SIZES.width}
+                    ref={flatListRef}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    ref={flatListRef}
                     scrollEnabled={false}
                     pagingEnabled
                     data={bottom_tabs}
                     keyExtractor={(item) => `${item.id}`}
                     renderItem={({ item, index }) => {
                         return (
-                            <View style={[styles.flatListItemContainer]}>
+                            <View style={styles.flatListItemContainer}>
                                 {item.label == screens.home && <Home />}
                                 {item.label == screens.search && <Search />}
                                 {item.label == screens.cart && <Cart />}
@@ -312,7 +314,8 @@ export default MainLayout
 const styles = StyleSheet.create({
     flatListItemContainer: {
         width: SIZES.width,
-        height: SIZES.height
+        // height: SIZES.height
+        height: SIZES.height - 150 - StatusBar.currentHeight,
     },
 
     tabButtonContent: {
@@ -343,12 +346,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: SIZES.radius,
         borderTopEndRadius: 20,
         borderTopStartRadius: 20,
-        backgroundColor: COLORS.white
+        backgroundColor: COLORS.white,
+        zIndex: 2
     },
 
     footerContainer: {
         height: 100,
-        justifyContent: 'flex-end',
     },
 
     footerGradient: {
@@ -364,7 +367,8 @@ const styles = StyleSheet.create({
     containerStyle: {
         height: 50,
         paddingHorizontal: SIZES.padding,
-        alignItems: 'center'
+        marginTop: SIZES.radius,
+        alignItems: 'center',
     },
 
     profile: {
