@@ -16,4 +16,5 @@ export default icons = {
     cart: require('../assets/icons/cart.png'),
     calories: require('../assets/icons/calories.png'),
     favouriteFilled: require('../assets/icons/favourite-filled.png'),
+    star: require('../assets/icons/star.png'),
 }

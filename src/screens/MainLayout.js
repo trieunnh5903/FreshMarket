@@ -1,26 +1,15 @@
 import { Image, Text, StyleSheet, StatusBar, View, TouchableWithoutFeedback, FlatList } from 'react-native'
 import React, { useEffect, useRef } from 'react'
-import { COLORS } from '../constants/colors';
+import { COLORS, FONTS, SIZES, icons, bottom_tabs, screens, data } from '../constants';
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedTab } from '../redux/slice/tabSlice';
-import { screens, bottom_tabs } from '../constants/screens';
-import { SIZES } from '../constants/sizes';
-import { Header } from '../components';
+import { Header, FocusAwareStatusBar } from '../components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import icons from '../constants/icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import data from '../constants/data';
 import LinearGradient from 'react-native-linear-gradient';
-import { FONTS } from '../constants/fonts';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import Home from './home/Home';
-import Search from './search/Search';
-import Cart from './cart/Cart';
-import Favourite from './favourite/Favourite';
-import Notification from './notification/Notification';
+import { Home, Cart, Search, Favourite, Notification } from '.';
 import { FlashList } from '@shopify/flash-list';
-import FocusAwareStatusBar from '../components/FocusAwareStatusBar';
-
 
 const TabButton = ({ icon, label, isFocused, onPress, colorReanimatedStyle, flexReanimatedStyle }) => {
     return (
@@ -315,7 +304,7 @@ const styles = StyleSheet.create({
     flatListItemContainer: {
         width: SIZES.width,
         // height: SIZES.height
-        height: SIZES.height - 150 - StatusBar.currentHeight,
+        height: SIZES.height - 150 - 12 - StatusBar.currentHeight,
     },
 
     tabButtonContent: {
@@ -352,6 +341,10 @@ const styles = StyleSheet.create({
 
     footerContainer: {
         height: 100,
+        position: 'absolute',
+        bottom: 0,
+        left: 0, right: 0,
+        alignSelf: 'flex-end',
     },
 
     footerGradient: {

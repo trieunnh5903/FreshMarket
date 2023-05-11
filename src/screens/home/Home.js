@@ -1,13 +1,8 @@
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, FlatList, View } from 'react-native'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import icons from '../../constants/icons'
-import { COLORS } from '../../constants/colors'
-import { SIZES } from '../../constants/sizes'
-import data from '../../constants/data'
-import { HorizontalFoodCard } from '../../components'
-import { FONTS } from '../../constants/fonts'
-import VerticalFoodCard from '../../components/VerticalFoodCard'
-
+import { icons, COLORS, SIZES, FONTS, data } from '../../constants'
+import { HorizontalFoodCard, VerticalFoodCard } from '../../components'
+import FilterProduct from './FilterProduct'
 const Section = ({ title, onPress, children }) => {
   return (
     <View>
@@ -231,12 +226,11 @@ const Home = () => {
       {/* filter modal */}
       {
         showFilterModal &&
-        <FilterModal
+        <FilterProduct
           isVisible={showFilterModal}
           onClose={() => setShowFilterModal(false)}
         />
       }
-
       {/* list */}
       <FlatList
         ListHeaderComponent={() => {
@@ -325,7 +319,7 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: COLORS.white2
+    backgroundColor: COLORS.white2,
   },
 
   searchContainer: {
