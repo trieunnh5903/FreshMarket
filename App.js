@@ -1,4 +1,5 @@
 import * as React from 'react';
+import SplashScreen from 'react-native-splash-screen'
 import { Button, StatusBar, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,6 +12,9 @@ import { store } from './src/redux/store';
 const Stack = createStackNavigator()
 
 export default function App() {
+  React.useEffect(() => {
+    SplashScreen.hide()
+  }, [])
   return (
     <Provider store={store}>
       < NavigationContainer>
