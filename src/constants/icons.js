@@ -17,4 +17,10 @@ export default icons = {
     calories: require('../assets/icons/calories.png'),
     favouriteFilled: require('../assets/icons/favourite-filled.png'),
     star: require('../assets/icons/star.png'),
+    cancel_circle: require('../assets/icons/cancel_circle.png'),
+    check_circle: require('../assets/icons/check_circle.png'),
+    eye: require('../assets/icons/eye.png'),
+    eye_off: require('../assets/icons/eye_off.png'),
+    google: require('../assets/icons/google.png'),
+    facebook: require('../assets/icons/facebook.png'),
 }

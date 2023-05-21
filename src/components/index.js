@@ -6,7 +6,9 @@ import ButtonIcon from "./ButtonIcon"
 import ButtonText from "./ButtonText"
 import TwoPointSlider from "./TwoPointSlider"
 import ButtonTextIcon from "./ButtonTextIcon"
+import InputForm from "./InputForm"
 export {
+    InputForm,
     TwoPointSlider,
     Header,
     HorizontalFoodCard,

@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { FONTS } from '../constants'
 
-const ButtonText = ({ label, labelStyle, containerStyle, onPress }) => {
+const ButtonText = ({ label, labelStyle, containerStyle, onPress, disabled }) => {
     return (
         <TouchableOpacity
+            disabled={disabled}
             onPress={onPress}
             style={[styles.container, containerStyle]}>
-            <Text style={[labelStyle]}>{label}</Text>
+            <Text style={[FONTS.h3, labelStyle]}>{label}</Text>
         </TouchableOpacity>
     )
 }

@@ -4,12 +4,14 @@ import { COLORS } from "./colors";
 import { screens, bottom_tabs } from "./screens";
 import icons from "./icons";
 import data from "./data";
+import images from "./images";
 export {
     FONTS,
     SIZES,
     COLORS,
     screens,
     bottom_tabs,
+    images,
     icons,
     data
 }

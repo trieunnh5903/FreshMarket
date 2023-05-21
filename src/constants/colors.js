@@ -1,8 +1,8 @@
 export const COLORS = {
-    primary: "#FF6C44", //orange
+    primary: "rgb(255, 108, 68)", //orange
     transparentPrimray: 'rgba(227, 120, 75, 0.4)',
     orange: "#FFA133",
-    lightOrange: "#FFA133",
+    lightOrange: "rgb(255, 161, 51)",
     lightOrange2: "#FDDED4",
     lightOrange3: '#FFD9AD',
     green: "#27AE60",
@@ -15,7 +15,7 @@ export const COLORS = {
     gray2: "#BBBDC1",
     gray3: '#CFD0D7',
     lightGray1: "#DDDDDD",
-    lightGray2: "#F5F5F8",
+    lightGray2: "#F5F5F7",
     white2: "#FBFBFB",
     white: '#FFFFFF',
     black: "#000000",

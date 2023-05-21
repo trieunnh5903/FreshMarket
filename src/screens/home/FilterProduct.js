@@ -121,7 +121,7 @@ const FilterProduct = ({ isVisible, onClose }) => {
                                         marginRight: SIZES.base,
                                         ...FONTS.h3
                                     }}
-                                    icon={icons.star}
+                                    iconRight={icons.star}
                                     iconStyle={{
                                         width: 24,
                                         height: 24,
