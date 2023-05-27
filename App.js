@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CustomDrawer from './src/navigation/CustomDrawer';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
-import { OnBoarding, Otp, SignIn, SignUp } from './src/screens';
+import { ForgotPassword, OnBoarding, Otp, SignIn, SignUp } from './src/screens';
 
 const Stack = createStackNavigator()
 
@@ -20,7 +20,7 @@ export default function App() {
     <Provider store={store}>
       < NavigationContainer>
         <Stack.Navigator
-          initialRouteName='Otp'
+          initialRouteName='SignIn'
           screenOptions={{
             headerShown: false
           }}>
@@ -36,6 +36,9 @@ export default function App() {
           <Stack.Screen
             name='Otp'
             component={Otp} />
+          <Stack.Screen
+            name='ForgotPassword'
+            component={ForgotPassword} />
           <Stack.Screen
             name='CustomDrawer'
             component={CustomDrawer} />

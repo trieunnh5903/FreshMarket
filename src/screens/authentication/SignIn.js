@@ -14,6 +14,10 @@ export default function SignIn({ navigation }) {
   const isEnableSignIn = () => {
     return emai != '' && password != '' && passwordError == '' && emailError == '';
   }
+
+  const goToForgetPassword = () => {
+    navigation.navigate("ForgotPassword")
+  }
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <AuthLayout
@@ -78,7 +82,7 @@ export default function SignIn({ navigation }) {
                 ...FONTS.body4
               }}>Save Me</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={goToForgetPassword}>
               <Text style={[styles.forgotPass, FONTS.body4]}>Forgot password?</Text>
             </TouchableOpacity>
           </View>

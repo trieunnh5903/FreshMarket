@@ -7,7 +7,9 @@ const AuthLayout = ({ title, subtitle, titleContainerStyle, children }) => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <TouchableWithoutFeedback
+        touchSoundDisabled={true}
+        onPress={Keyboard.dismiss}>
         <View style={styles.inner}>
           {/* logo */}
           <View style={{ alignItems: 'center' }}>
