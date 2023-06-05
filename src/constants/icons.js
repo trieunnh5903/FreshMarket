@@ -1,5 +1,10 @@
 export default icons = {
     close: require('../assets/icons/close.png'),
+    add: require('../assets/icons/add_FILL0_wght500_GRAD0_opsz24.png'),
+    arrow_back: require('../assets/icons/arrow_back.png'),
+    clock: require('../assets/icons/clock.png'),
+    dolar: require('../assets/icons/money.png'),
+    remove: require('../assets/icons/remove_FILL0_wght500_GRAD0_opsz24.png'),
     add_persion: require('../assets/icons/add_persion.png'),
     favourite: require('../assets/icons/favourite.png'),
     help_center: require('../assets/icons/help_center.png'),

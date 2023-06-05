@@ -7,6 +7,7 @@ import ButtonText from "./ButtonText"
 import TwoPointSlider from "./TwoPointSlider"
 import ButtonTextIcon from "./ButtonTextIcon"
 import InputForm from "./InputForm"
+import ButtonQuantityCart from "./ButtonQuantityCart"
 export {
     InputForm,
     TwoPointSlider,
@@ -16,5 +17,6 @@ export {
     VerticalFoodCard,
     ButtonIcon,
     ButtonText,
-    ButtonTextIcon
+    ButtonTextIcon,
+    ButtonQuantityCart
 }

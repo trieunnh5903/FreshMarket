@@ -5,7 +5,7 @@ import { COLORS } from '../constants/colors'
 
 const Header = ({ title, containerStyle, leftComponent, rightComponent }) => {
     return (
-        <View style={{ flexDirection: 'row', ...containerStyle }}>
+        <View style={{ flexDirection: 'row', height: 50, ...containerStyle }}>
             {/* left */}
             {leftComponent}
             {/* title */}

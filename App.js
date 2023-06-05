@@ -9,6 +9,7 @@ import CustomDrawer from './src/navigation/CustomDrawer';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
 import { ForgotPassword, OnBoarding, Otp, SignIn, SignUp } from './src/screens';
+import FoodDetail from './src/screens/food/FoodDetail';
 
 const Stack = createStackNavigator()
 
@@ -20,10 +21,13 @@ export default function App() {
     <Provider store={store}>
       < NavigationContainer>
         <Stack.Navigator
-          initialRouteName='SignIn'
+          initialRouteName='FoodDetail'
           screenOptions={{
             headerShown: false
           }}>
+             <Stack.Screen
+            name='FoodDetail'
+            component={FoodDetail} />
           <Stack.Screen
             name='OnBoarding'
             component={OnBoarding} />

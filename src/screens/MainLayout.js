@@ -360,7 +360,6 @@ const styles = StyleSheet.create({
     containerStyle: {
         height: 50,
         paddingHorizontal: SIZES.padding,
-        marginTop: SIZES.radius,
         alignItems: 'center',
     },
 

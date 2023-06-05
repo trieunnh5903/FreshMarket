@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
-import { icons } from '../constants'
 
-const ButtonTextIcon = ({ label, labelStyle, iconRight, iconLeft, iconStyle, containerStyle, onPress }) => {
+const ButtonTextIcon = ({ disabled = false, label, labelStyle, iconRight, iconLeft, iconStyle, containerStyle, onPress }) => {
     return (
         <TouchableOpacity
+            disabled={disabled}
             onPress={onPress}
             style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', ...containerStyle }}>
             {

@@ -257,4 +257,4 @@ const menu = [
 
 
 
-export default data = { myProfile, menu, categories, tags, ratings, delivery_time, onboarding_screens }
+export default data = { myProfile, menu, categories, tags, ratings, delivery_time, onboarding_screens, hamburger }
