@@ -1,9 +1,6 @@
 import * as React from 'react';
 import SplashScreen from 'react-native-splash-screen'
-import { Button, StatusBar, View } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-import { useSharedValue } from 'react-native-reanimated';
 import { createStackNavigator } from '@react-navigation/stack';
 import CustomDrawer from './src/navigation/CustomDrawer';
 import { Provider } from 'react-redux';
@@ -21,11 +18,11 @@ export default function App() {
     <Provider store={store}>
       < NavigationContainer>
         <Stack.Navigator
-          initialRouteName='FoodDetail'
+          initialRouteName='CustomDrawer'
           screenOptions={{
             headerShown: false
           }}>
-             <Stack.Screen
+             {/* <Stack.Screen
             name='FoodDetail'
             component={FoodDetail} />
           <Stack.Screen
@@ -42,7 +39,7 @@ export default function App() {
             component={Otp} />
           <Stack.Screen
             name='ForgotPassword'
-            component={ForgotPassword} />
+            component={ForgotPassword} /> */}
           <Stack.Screen
             name='CustomDrawer'
             component={CustomDrawer} />

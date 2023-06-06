@@ -1,8 +1,6 @@
 import { Image, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { DrawerContentScrollView, DrawerItem, DrawerItemList, createDrawerNavigator, useDrawerProgress } from '@react-navigation/drawer'
-import Home from '../screens/home/Home';
-import Cart from '../screens/cart/Cart';
 import { COLORS } from '../constants/colors';
 import { screens } from '../constants/screens';
 import icons from '../constants/icons';
@@ -11,9 +9,6 @@ import data from '../constants/data';
 import { SIZES } from '../constants/sizes';
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedTab } from '../redux/slice/tabSlice';
-import MyWallet from '../screens/my_wallet/MyWallet';
-import Notification from '../screens/notification/Notification';
-import Favourite from '../screens/favourite/Favourite';
 import MainLayout from '../screens/MainLayout';
 const CustomDrawerItem = ({ label, icon, onPress, isFocused }) => {
     return (
