@@ -11,6 +11,14 @@ import ForgotPassword from "./authentication/ForgotPassword";
 import Otp from "./authentication/Otp";
 import SignIn from "./authentication/SignIn";
 import SignUp from "./authentication/SignUp";
+import FoodDetail from "./food/FoodDetail";
+import MyCard from "./card/MyCard";
+import AddCard from "./card/AddCard";
+import CheckOut from "./checkout/CheckOut";
 export {
-    Cart, Favourite, Home, MyWallet, Notification, Search, MainLayout, OnBoarding, ForgotPassword, AuthLayout, SignIn, SignUp, Otp
+    Cart, Favourite, Home, MyWallet, Notification, Search, MainLayout, OnBoarding, ForgotPassword, AuthLayout, SignIn, SignUp, Otp,
+    FoodDetail,
+    MyCard,
+    AddCard,
+    CheckOut
 }

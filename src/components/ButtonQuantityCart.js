@@ -2,9 +2,10 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { COLORS, FONTS, SIZES, icons } from '../constants'
 
-const ButtonQuantityCart = ({ onPress, quantity }) => {
+const ButtonQuantityCart = ({ onPress, quantity, disabled = false }) => {
     return (
         <TouchableOpacity
+            disabled={disabled}
             style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}
             onPress={onPress}>
             <Image source={icons.cart} style={styles.iconStyle} />

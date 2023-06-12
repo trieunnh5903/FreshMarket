@@ -8,8 +8,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CustomDrawer from './src/navigation/CustomDrawer';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
-import { ForgotPassword, OnBoarding, Otp, SignIn, SignUp } from './src/screens';
+import { AddCard, Cart, CheckOut, ForgotPassword, OnBoarding, Otp, SignIn, SignUp } from './src/screens';
 import FoodDetail from './src/screens/food/FoodDetail';
+import MyCard from './src/screens/card/MyCard';
+
 
 const Stack = createStackNavigator()
 
@@ -21,13 +23,25 @@ export default function App() {
     <Provider store={store}>
       < NavigationContainer>
         <Stack.Navigator
-          initialRouteName='FoodDetail'
+          initialRouteName='MyCard'
           screenOptions={{
             headerShown: false
           }}>
-             <Stack.Screen
+          <Stack.Screen
+            name='CheckOut'
+            component={CheckOut} />
+          <Stack.Screen
             name='FoodDetail'
             component={FoodDetail} />
+          <Stack.Screen
+            name='MyCard'
+            component={MyCard} />
+          <Stack.Screen
+            name='AddCard'
+            component={AddCard} />
+          <Stack.Screen
+            name='Cart'
+            component={Cart} />
           <Stack.Screen
             name='OnBoarding'
             component={OnBoarding} />

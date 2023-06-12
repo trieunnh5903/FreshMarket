@@ -8,7 +8,14 @@ import TwoPointSlider from "./TwoPointSlider"
 import ButtonTextIcon from "./ButtonTextIcon"
 import InputForm from "./InputForm"
 import ButtonQuantityCart from "./ButtonQuantityCart"
+import QuantityInput from "./QuantityInput"
+import TotalFooter from "./TotalFooter"
+import Divider from "./Divider"
+import CardItem from "./CardItem"
 export {
+    CardItem,
+    TotalFooter,
+    Divider,
     InputForm,
     TwoPointSlider,
     Header,
@@ -18,5 +25,6 @@ export {
     ButtonIcon,
     ButtonText,
     ButtonTextIcon,
+    QuantityInput,
     ButtonQuantityCart
 }
