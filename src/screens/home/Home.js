@@ -1,15 +1,16 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, FlatList, View } from 'react-native'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { icons, COLORS, SIZES, FONTS, data } from '../../constants'
-import { HorizontalFoodCard, VerticalFoodCard } from '../../components'
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, FlatList, View, SafeAreaView, ScrollView, ToastAndroid, StatusBar } from 'react-native'
+import React, { useCallback, useEffect, useRef, useState, useMemo } from 'react'
+import { icons, COLORS, SIZES, FONTS } from '../../constants'
+import data from '../../data'
+import { Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
 import FilterProduct from './FilterProduct'
 const Section = ({ title, onPress, children }) => {
   return (
     <View>
       <View style={styles.section}>
-        <Text style={{ flex: 1, ...FONTS.h3, color: COLORS.blackText }}>{title}</Text>
+        <Text style={{ ...FONTS.h5, color: COLORS.blackText, fontWeight: 'bold' }}>{title}</Text>
         <TouchableOpacity onPress={onPress}>
-          <Text style={{ color: COLORS.primary, ...FONTS.body3 }}>Show All</Text>
+          <Text style={{ color: COLORS.primary, ...FONTS.subtitle2 }}>Show All</Text>
         </TouchableOpacity>
       </View>
       {children}
@@ -27,21 +28,21 @@ const Home = () => {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const tabMenuList = useRef();
   useEffect(() => {
-    handlerChangeCategory(categoryId, menuTypeId);
+    handlerChangeCategory
   }, [])
 
-  const handlerChangeCategory = (categoryId, menuTypeId) => {
+  const handlerChangeCategory = useMemo(() => {
     let selectedPopular = data.menu.find(a => a.name == "Popular");
     let selectedRecommend = data.menu.find(a => a.name == 'Recommended');
     let menu = data.menu.filter(a => a.id == menuTypeId);
     setRecommends(selectedRecommend?.list.filter(a => a.categories.includes(categoryId)))
     setPopular(selectedPopular?.list.filter(a => a.categories.includes(categoryId)))
     setMenuList(menu[0]?.list.filter(a => a.categories.includes(categoryId)))
-  }
+  }, [categoryId, menuTypeId]);
 
   const onTabPress = useCallback((tabId) => {
     setMenuTypeId(tabId);
-    handlerChangeCategory(categoryId, tabId);
+    handlerChangeCategory
   }, [])
 
   const SearchInput = () => {
@@ -81,8 +82,13 @@ const Home = () => {
               onPress={() => onTabPress(item.id)}>
               <Text
                 style={[
-                  { color: menuTypeId == item.id ? COLORS.primary : COLORS.blackText },
-                  FONTS.h3
+                  FONTS.h6,
+                  {
+                    color: menuTypeId == item.id
+                      ? COLORS.primary
+                      : COLORS.blackText,
+                    fontWeight: 'bold'
+                  },
                 ]}>{item.name}</Text>
             </TouchableOpacity>
           )
@@ -143,7 +149,8 @@ const Home = () => {
                 containerStyle={{
                   marginLeft: index == 0 ? SIZES.padding : 18,
                   marginRight: index == popular.length - 1 ? SIZES.padding : 0,
-                  padding: SIZES.radius
+                  padding: SIZES.radius,
+                  width: 250
                 }}
                 imageStyle={{
                   width: 150,
@@ -159,8 +166,8 @@ const Home = () => {
   const onListCategoryPress = useCallback(
     (categoryId) => {
       setCategoryId(categoryId)
-      handlerChangeCategory(categoryId, menuTypeId)
-    }, [menuTypeId]
+      handlerChangeCategory
+    }, [categoryId]
   )
   const ListCategory = () => {
     return (
@@ -185,7 +192,7 @@ const Home = () => {
                 style={{
                   color: item.id == categoryId ? COLORS.white : COLORS.darkGray,
                   marginLeft: SIZES.base,
-                  ...FONTS.h3
+                  ...FONTS.button
                 }}>{item.name}</Text>
             </TouchableOpacity>
           )
@@ -203,7 +210,7 @@ const Home = () => {
         <Text
           style={{
             color: COLORS.primary,
-            ...FONTS.body3
+            ...FONTS.subtitle1
           }}>
           DELIVERY TO
         </Text>
@@ -211,7 +218,7 @@ const Home = () => {
         <TouchableOpacity
           style={styles.deliveryTo}>
           <Text
-            style={{ ...FONTS.h3, color: COLORS.blackText }}
+            style={{ ...FONTS.h6, color: COLORS.blackText, fontWeight: 'bold' }}
           >{data?.myProfile?.address}</Text>
           <Image source={icons.down_arrow} style={{ width: 24, height: 24 }} />
         </TouchableOpacity>
@@ -220,70 +227,100 @@ const Home = () => {
   }
 
   return (
-    <View style={styles.container}>
-      {/* search */}
-      <SearchInput />
-      {/* filter modal */}
-      {
-        showFilterModal &&
-        <FilterProduct
-          isVisible={showFilterModal}
-          onClose={() => setShowFilterModal(false)}
-        />
-      }
-      {/* list */}
-      <FlatList
-        ListHeaderComponent={() => {
-          return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor={COLORS.white} barStyle={'dark-content'} />
+      <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
+        {/* header */}
+        <Header
+          containerStyle={styles.headerContainerStyle}
+          title={'HOME'}
+          rightComponent={
             <View>
-              {/* delivery to */}
-              <DeliveryTo />
-              {/* list category */}
-              <ListCategory />
-              {/* list popular */}
-              <PopularSection />
-              {/* list recommended */}
-              <RecommendedSection />
-              {/* menu type */}
-              <HeaderMenuType />
+              <Image style={styles.profile} source={{ uri: data.myProfile.profile_image }}></Image>
             </View>
-          )
-        }}
-        // ListFooterComponent={() => {
-        //   return (<View style={{ height: 200 }} />)
-        // }}
-        data={menuList}
-        scrollEnabled={true}
-        keyExtractor={item => `${item.id}`}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item, index }) => {
-          return (
-            <HorizontalFoodCard
-              imageStyle={styles.imageCard}
-              onPress={() => console.log("HorizontalFoodCard")}
-              item={item}
-              containerStyle={styles.horizontalFoodCard} />
-          )
-        }}
-      />
-    </View>
+          }
+          leftComponent={
+            <TouchableOpacity
+              style={styles.headerLeftComponent}>
+              <Image source={icons.menu} style={styles.iconMenu} />
+            </TouchableOpacity>
+          }
+        />
+        {/* search */}
+        <SearchInput />
+        {/* filter modal */}
+        {/* {
+          showFilterModal &&
+          <FilterProduct
+            isVisible={showFilterModal}
+            onClose={() => setShowFilterModal(false)}
+          />
+        } */}
+        {/* delivery to */}
+        <DeliveryTo />
+        {/* list category */}
+        <ListCategory />
+        {/* list popular */}
+        <PopularSection />
+        {/* list recommended */}
+        <RecommendedSection />
+        {/* menu type */}
+        <HeaderMenuType />
+        {/* list */}
+        <FlatList
+          data={menuList}
+          scrollEnabled={false}
+          keyExtractor={item => `${item.id}`}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item, index }) => {
+            return (
+              <HorizontalFoodCard
+                imageStyle={styles.imageCard}
+                onPress={() => console.log("HorizontalFoodCard")}
+                item={item}
+                containerStyle={styles.horizontalFoodCard} />
+            )
+          }}
+        />
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
 export default Home
 
 const styles = StyleSheet.create({
+  headerContainerStyle: {
+    height: 50,
+    paddingHorizontal: SIZES.padding,
+    alignItems: 'center',
+  },
+  profile: {
+    width: 40,
+    height: 40,
+    borderRadius: SIZES.radius
+  },
   deliveryTo: {
     flexDirection: 'row',
     marginTop: SIZES.base,
     alignItems: 'center'
   },
-
+  iconBottomTab: {
+    width: 24,
+    height: 24,
+    tintColor: COLORS.black,
+  },
+  iconMenu: {
+    width: 24,
+    height: 24,
+    tintColor: COLORS.gray2,
+  },
   categoriesItem: {
     alignItems: 'center',
     minHeight: 50,
     borderRadius: SIZES.radius,
-    padding: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
     flexDirection: 'row',
     marginTop: SIZES.padding
   },
@@ -293,7 +330,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: SIZES.padding,
     marginTop: 30,
-    marginBottom: 20
+    marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
 
   imageCard: {
@@ -303,9 +342,19 @@ const styles = StyleSheet.create({
   },
 
   horizontalFoodCard: {
-    height: 130,
+    height: 150,
     marginHorizontal: SIZES.padding,
     marginBottom: SIZES.radius,
+  },
+
+  headerLeftComponent: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: SIZES.radius,
+    borderColor: COLORS.gray2
   },
 
   icon: {
@@ -314,22 +363,23 @@ const styles = StyleSheet.create({
   },
 
   searchInput: {
-    flex: 1
+    flex: 1,
+    marginLeft: 16,
   },
 
   container: {
     flex: 1,
-    backgroundColor: COLORS.white2,
+    backgroundColor: COLORS.white,
   },
 
   searchContainer: {
     flexDirection: 'row',
-    height: 40,
+    height: 50,
     backgroundColor: COLORS.lightGray2,
     borderRadius: SIZES.radius,
     marginVertical: SIZES.base,
     marginHorizontal: SIZES.padding,
-    paddingHorizontal: SIZES.radius,
+    paddingHorizontal: 12,
     borderRadius: SIZES.radius,
     alignItems: 'center'
   }

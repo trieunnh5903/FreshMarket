@@ -16,7 +16,19 @@ import MyCard from "./card/MyCard";
 import AddCard from "./card/AddCard";
 import CheckOut from "./checkout/CheckOut";
 export {
-    Cart, Favourite, Home, MyWallet, Notification, Search, MainLayout, OnBoarding, ForgotPassword, AuthLayout, SignIn, SignUp, Otp,
+    Cart,
+    Favourite,
+    Home,
+    MyWallet,
+    Notification,
+    Search,
+    MainLayout,
+    OnBoarding,
+    ForgotPassword,
+    AuthLayout,
+    SignIn,
+    SignUp,
+    Otp,
     FoodDetail,
     MyCard,
     AddCard,

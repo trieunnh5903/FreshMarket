@@ -7,7 +7,7 @@ import { COLORS } from '../constants/colors';
 import { screens } from '../constants/screens';
 import icons from '../constants/icons';
 import { FONTS } from '../constants/fonts';
-import data from '../constants/data';
+import data from '../data';
 import { SIZES } from '../constants/sizes';
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedTab } from '../redux/slice/tabSlice';

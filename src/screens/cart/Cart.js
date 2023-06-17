@@ -1,6 +1,7 @@
 import { StyleSheet, Text, Pressable, TouchableOpacity, View, Image } from 'react-native'
 import React, { useState } from 'react'
-import { COLORS, FONTS, SIZES, data, icons } from '../../constants'
+import { COLORS, FONTS, SIZES, icons } from '../../constants'
+import data from '../../data'
 import { ButtonIcon, ButtonQuantityCart, Header, QuantityInput, TotalFooter } from '../../components'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { SwipeListView } from 'react-native-swipe-list-view'

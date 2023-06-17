@@ -1,6 +1,7 @@
 import { Image, Text, StyleSheet, StatusBar, View, TouchableWithoutFeedback, FlatList } from 'react-native'
 import React, { useEffect, useRef } from 'react'
-import { COLORS, FONTS, SIZES, icons, bottom_tabs, screens, data } from '../constants';
+import { COLORS, FONTS, SIZES, icons, bottom_tabs, screens } from '../constants';
+import data from '../data';
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedTab } from '../redux/slice/tabSlice';
 import { Header, FocusAwareStatusBar } from '../components';
@@ -180,9 +181,6 @@ const MainLayout = ({ navigation }) => {
         <View style={[styles.container,
         {
             paddingTop: insets.top,
-            paddingBottom: insets.bottom,
-            paddingLeft: insets.left,
-            paddingRight: insets.right,
         }]}>
             <FocusAwareStatusBar barStyle={"dark-content"} animated translucent backgroundColor={COLORS.transparent} />
             <Header
@@ -215,11 +213,11 @@ const MainLayout = ({ navigation }) => {
                     renderItem={({ item, index }) => {
                         return (
                             <View style={styles.flatListItemContainer}>
-                                {item.label == screens.home && <Home />}
-                                {item.label == screens.search && <Search />}
-                                {item.label == screens.cart && <Cart />}
-                                {item.label == screens.favourite && <Favourite />}
-                                {item.label == screens.notification && <Notification />}
+                                {item.name == screens.home && <Home />}
+                                {item.name == screens.search && <Search />}
+                                {item.name == screens.cart && <Cart />}
+                                {item.name == screens.favourite && <Favourite />}
+                                {item.name == screens.notification && <Notification />}
                             </View>
                         )
                     }}

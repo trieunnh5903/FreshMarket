@@ -3,7 +3,7 @@ import React from 'react'
 
 const Favourite = () => {
   return (
-    <View>
+    <View style={{flex: 1}}>
       <Text>Favourite</Text>
     </View>
   )

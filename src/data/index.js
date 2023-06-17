@@ -1,4 +1,4 @@
-import icons from "./icons"
+import icons from "../constants/icons"
 
 const myProfile = {
     name: "ByCoders",
@@ -288,7 +288,6 @@ const allCards = [
         icon: icons.visa
     },
 ]
-
 
 export default data = {
     myProfile, menu, categories, tags, ratings, delivery_time, onboarding_screens, hamburger, myCart, myCard,

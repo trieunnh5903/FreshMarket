@@ -13,16 +13,16 @@ const VerticalFoodCard = ({ containerStyle, item, imageStyle }) => {
                 <Image style={styles.iconCalories} source={icons.calories} />
                 <Text style={styles.textCalories}>{item.calories} Calories</Text>
                 <TouchableOpacity>
-                    <Image style={{ tintColor: item.isFavourite ? COLORS.red : COLORS.gray2 }} source={icons.favouriteFilled} />
+                    <Image style={{ tintColor: item.isFavourite ? COLORS.primary : COLORS.gray2 }} source={icons.favouriteFilled} />
                 </TouchableOpacity>
             </View>
             {/* image */}
             <Image style={imageStyle} source={{ uri: item.image }}></Image>
             {/* info */}
             <View style={styles.info}>
-                <Text style={{ color: COLORS.blackText, ...FONTS.h3 }}>{item.name}</Text>
-                <Text style={{ color: COLORS.darkGray2, ...FONTS.body4 }}>{item.description}</Text>
-                <Text style={[{ color: COLORS.blackText, marginTop: SIZES.base }, FONTS.h2]}>${item.price}</Text>
+                <Text numberOfLines={1} style={{ color: COLORS.blackText, ...FONTS.h5, fontWeight: 'bold' }}>{item.name}</Text>
+                <Text numberOfLines={1} style={{ color: COLORS.darkGray2, ...FONTS.subtitle2}}>{item.description}</Text>
+                <Text numberOfLines={1} style={[{ color: COLORS.blackText, marginTop: SIZES.base, fontWeight: 'bold' }, FONTS.h4]}>${item.price}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -32,7 +32,7 @@ export default VerticalFoodCard
 
 const styles = StyleSheet.create({
     textCalories: {
-        flex: 1, ...FONTS.body4, color: COLORS.darkGray2
+        flex: 1, ...FONTS.bodyText2, color: COLORS.darkGray2
     },
     iconCalories: { width: 24, height: 24 },
     container: {
